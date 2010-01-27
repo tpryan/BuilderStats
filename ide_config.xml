@@ -1,0 +1,23 @@
+<application>
+<name>Builder Stats</name>
+<author>Terrence Ryan</author>
+<version>1.0</version>
+<email>terry.ryan@adobe.com</email>	
+<description>Counts lines of code.</description>
+<license>Free to use and especially improve. </license>	
+	
+	<!-- Add menu contributions to RDS Data View -->	   
+    <menucontributions >
+		<contribution target="projectview" >
+			<menu name="Builder Stats">
+				<action name="Gather Statistics" handlerid="gatherStats" />
+			</menu>
+	</contribution>
+    </menucontributions>	
+
+	<!-- Define Handlers-->
+	<handlers>		
+		<handler id="gatherStats" type="CFM" filename="gatherStats.cfm" />
+	</handlers>
+
+</application>

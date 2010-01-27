@@ -85,7 +85,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<cfoutput><title>Code Stats</title></cfoutput>
+<cfoutput><title>BuilderStats</title></cfoutput>
 
 	<style>
 		
@@ -93,7 +93,7 @@
 			font-family: "Adobe Clean", "Myriad Pro", Calibri, Tahoma, Arial, Helvetica, sans-serif;
 			font-size: 14px;
 			background-color: #2A587A;
-			background-image: url(/CodeStats/handlers/grad.jpg);
+			background-image: url(/BuilderStats/handlers/grad.jpg);
 			background-repeat: repeat-x;
 			padding: 5px;
 			

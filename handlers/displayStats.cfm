@@ -85,9 +85,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="jquery.tablesorter.min.js"></script>
+<script>
+$(document).ready(function() {
+$("#allData").tablesorter();
+$("#extData").tablesorter();
+$("#folderData").tablesorter();
+})
+</script>
 <cfoutput><title>BuilderStats</title></cfoutput>
 
 	<style>
+		
+		thead th { cursor:pointer; }
 		
 		body{
 			font-family: "Adobe Clean", "Myriad Pro", Calibri, Tahoma, Arial, Helvetica, sans-serif;
@@ -111,16 +122,15 @@
 		strong{font-weight:bold;};
 		
 		table{
-			color: #FFFFFF;
-			width: 500px;
+			width: 100%;
 		}
 		
 		th{
 			text-align: left;
 			font-weight: bold;
-			background-color: #2A587A;
+			background-color: #142a3a;
 			padding: 2px;
-			color: #DEDEDE;
+			color: #DDDDDD;
 		}
 		
 		td{
@@ -144,7 +154,25 @@
 		
 		.lines{
 			text-align: right;
-			padding-left: 50px;	
+			width: 100px;	
+		}
+		.files{
+			width: 120px;	
+		}
+		
+		.type{
+			width: 180px;
+			
+		}
+		
+		.folder{
+			width: 180px;
+			
+		}
+		
+		.file{
+			width: 305px;
+			
 		}
 		
 	</style>
@@ -154,36 +182,51 @@
 	<h1>Code Stats</h1>	
 	
 	<cfif onlyAFile>
-		<p>The File <em>#url.rootFilePath#</em> contains <strong>#totalLines.lines#</strong> lines of code.	
+		<p>The file <em>#url.rootFilePath#</em> contains <strong>#NumberFormat(totalLines.lines)#</strong> lines of code.	
 		<cfabort>
 	<cfelse>
-		<p>The folder <em>#rootFilePath#</em> contains <strong>#totalLines.lines#</strong> lines of code in <strong>#fileStats.recordCount#</strong> files.	
+		<p>The folder <em>#rootFilePath#</em> contains <strong>#NumberFormat(totalLines.lines)#</strong> lines of code in <strong>#NumberFormat(fileStats.recordCount)#</strong> files.	
 	</cfif>
 	
 	
 	
-	
-	<table cellpadding="0" cellspacing="0">
-	<tr class="header"><td><h2>By Extension</h2></td><td>&nbsp;</td><td>&nbsp;</td></tr>	
-	<tr><th class="type">Type</th><th class="files">Files</th><th class="lines">Lines of Code</th></tr>	
+
+	<h2>By Extension</h2>	
+	<table cellpadding="0" cellspacing="0" id="extData">
+	<thead>
+	<tr><th class="type">Type &loz;</th><th class="files">Files &loz;</th><th class="lines">Lines of Code &loz;</th></tr>	
+	</thead>
+	<tbody>
 	<cfloop query="linesByextension">
 		<cfif currentRow mod 2><cfset class="odd"><cfelse><cfset class=""></cfif>
-		<tr class="#class#"><td>#extension#</td><td>#numberofFiles#</td><td class="lines">#lines#</td></tr>
+		<tr class="#class#"><td>#extension#</td><td>#NumberFormat(numberofFiles)#</td><td class="lines">#NumberFormat(lines)#</td></tr>
 	</cfloop>
-	<tr class="header"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>	
-	<tr class="header"><td><h2>By Folder</h2></td><td>&nbsp;</td><td>&nbsp;</td></tr>	
-	<tr><th class="folder">Folder</th><th class="files">Files</th><th class="lines">Lines of Code</th></tr>	
+	</tbody>
+	</table>
+	
+	<h2>By Folder</h2>
+	<table cellpadding="0" cellspacing="0" id="folderData">
+	<thead>	
+	<tr><th class="folder">Folder &loz;</th><th class="files">Files &loz;</th><th class="lines">Lines of Code &loz;</th></tr>	
+	</thead>
+	<tbody>
 	<cfloop query="linesByFolder">
 		<cfif currentRow mod 2><cfset class="odd"><cfelse><cfset class=""></cfif>
-		<tr class="#class#"><td>#relativeparent#</td><td>#numberofFiles#</td><td class="lines">#lines#</td></tr>
+		<tr class="#class#"><td>#relativeparent#</td><td>#NumberFormat(numberofFiles)#</td><td class="lines">#NumberFormat(lines)#</td></tr>
 	</cfloop>
-	<tr class="header"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>	
-	<tr class="header"><td><h2>All</h2></td><td>&nbsp;</td><td>&nbsp;</td></tr>	
-	<tr><th class="file" colspan="2">File</th><th class="lines">Lines of Code</th></tr>	
+	</tbody>
+	</table>
+	<h2>All</h2>
+	<table cellpadding="0" cellspacing="0" id="allData">
+	<thead>
+	<tr><th class="file" colspan="2">File &loz;</th><th class="lines">Lines of Code &loz;</th></tr>	
+	</thead>
+	<tbody>
 	<cfloop query="fileStats">
 		<cfif currentRow mod 2><cfset class="odd"><cfelse><cfset class=""></cfif>
-		<tr class="#class#"><td colspan="2">#relativefile#</td><td class="lines">#lines#</td></tr>
+		<tr class="#class#"><td colspan="2">#relativefile#</td><td class="lines">#NumberFormat(lines)#</td></tr>
 	</cfloop>
+	</tbody>
 	</table>
 	
 	

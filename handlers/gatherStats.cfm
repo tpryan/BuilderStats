@@ -7,9 +7,10 @@
 	xmldoc = XMLParse(ideeventInfo); 
 	rootFilePath = XMLDoc.event.ide.projectview.resource.XMLAttributes.path;
 	
+	BaseURL = "http://" & cgi.server_name & ":" & cgi.server_port;
 	handlerPath = getDirectoryFromPath(cgi.script_name) & "/displayStats.cfm";
 	handlerOptions = "?rootFilePath=#URLEncodedFormat(rootFilePath)#&amp;r=#urlEncodedFormat(createUUID())#";
-	handlerURL = "http://" & cgi.server_name & handlerPath & handlerOptions;
+	handlerURL = BaseURL & handlerPath & handlerOptions;
 	
 	
 </cfscript>	

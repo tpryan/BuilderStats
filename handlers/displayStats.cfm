@@ -85,13 +85,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="jquery.js"></script>
 <script src="jquery.tablesorter.min.js"></script>
 <script>
 $(document).ready(function() {
-$("#allData").tablesorter();
-$("#extData").tablesorter();
-$("#folderData").tablesorter();
+
+//From Barney B: http://www.barneyb.com/barneyblog/2009/06/03/jquery-tablesorter-comma-parser/
+jQuery.tablesorter.addParser({
+  id: "commaDigit",
+  is: function(s, table) {
+    var c = table.config;
+    return jQuery.tablesorter.isDigit(s.replace(/,/g, ""), c);
+  },
+  format: function(s) {
+    return jQuery.tablesorter.formatFloat(s.replace(/,/g, ""));
+  },
+  type: "numeric"
+});
+
+$("#allData").tablesorter({
+	headers: {1: {sorter:"commaDigit"}},
+	widgets: ["zebra"]
+});
+$("#extData").tablesorter({
+	headers: {2: {sorter:"commaDigit"}},
+	widgets: ["zebra"]
+});
+$("#folderData").tablesorter({
+	headers: {2: {sorter:"commaDigit"}},
+	widgets: ["zebra"]	
+});
+
 })
 </script>
 <cfoutput><title>BuilderStats</title></cfoutput>
@@ -104,7 +128,7 @@ $("#folderData").tablesorter();
 			font-family: "Adobe Clean", "Myriad Pro", Calibri, Tahoma, Arial, Helvetica, sans-serif;
 			font-size: 14px;
 			background-color: #2A587A;
-			background-image: url(/BuilderStats/handlers/grad.jpg);
+			background-image: url(grad.jpg);
 			background-repeat: repeat-x;
 			padding: 5px;
 			
@@ -147,7 +171,7 @@ $("#folderData").tablesorter();
 		tr.odd{
 			background-color: #DEDEDE;
 		}
-		
+
 		tr.header{
 			background-color: transparent;
 		}
@@ -198,8 +222,7 @@ $("#folderData").tablesorter();
 	</thead>
 	<tbody>
 	<cfloop query="linesByextension">
-		<cfif currentRow mod 2><cfset class="odd"><cfelse><cfset class=""></cfif>
-		<tr class="#class#"><td>#extension#</td><td>#NumberFormat(numberofFiles)#</td><td class="lines">#NumberFormat(lines)#</td></tr>
+		<tr><td>#extension#</td><td>#NumberFormat(numberofFiles)#</td><td class="lines">#NumberFormat(lines)#</td></tr>
 	</cfloop>
 	</tbody>
 	</table>
@@ -211,8 +234,7 @@ $("#folderData").tablesorter();
 	</thead>
 	<tbody>
 	<cfloop query="linesByFolder">
-		<cfif currentRow mod 2><cfset class="odd"><cfelse><cfset class=""></cfif>
-		<tr class="#class#"><td>#relativeparent#</td><td>#NumberFormat(numberofFiles)#</td><td class="lines">#NumberFormat(lines)#</td></tr>
+		<tr><td>#relativeparent#</td><td>#NumberFormat(numberofFiles)#</td><td class="lines">#NumberFormat(lines)#</td></tr>
 	</cfloop>
 	</tbody>
 	</table>
@@ -223,8 +245,7 @@ $("#folderData").tablesorter();
 	</thead>
 	<tbody>
 	<cfloop query="fileStats">
-		<cfif currentRow mod 2><cfset class="odd"><cfelse><cfset class=""></cfif>
-		<tr class="#class#"><td colspan="2">#relativefile#</td><td class="lines">#NumberFormat(lines)#</td></tr>
+		<tr><td colspan="2">#relativefile#</td><td class="lines">#NumberFormat(lines)#</td></tr>
 	</cfloop>
 	</tbody>
 	</table>

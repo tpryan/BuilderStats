@@ -33,8 +33,6 @@
   	qoq.SetDBType("query");
     files = qoq.execute(sql=SQL).getResult();
 	
-	
-	
 	for(i=1; i <= files.recordCount; i++){
 		filePath = files.directory[i] & FS & files.name[i];
 		QueryAddRow(fileStats);
@@ -70,8 +68,6 @@
     qoq.setAttributes(resultSet = fileStats); 
   	qoq.SetDBType("query");
     linesByextension = qoq.execute(sql=SQL).getResult();
-	
-	
 	
 	//Query for lines of code by folder.
 	SQL = "SELECT count(file) as numberOfFiles, sum(cast(lines as integer)) as lines, relativeParent FROM resultset GROUP BY relativeParent";

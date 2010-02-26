@@ -7,7 +7,6 @@
 		<echo message="Testing ant in this environment. " />
 	</target>
 	
-
 	<target name="build" depends="build.clean,build.copy.files,build.zip" description="All of the stuff surrounding creating a clean copy of the build" />
 
 	<target name="build.clean">
@@ -34,14 +33,11 @@
 		<delete file='${build.dir}/.settings' />
 		<delete dir='${build.dir}/handlers/test' />
 		
-		
 	</target>
 	
 	<target name="build.zip" description="Creates a zip file of the build.">
 		<echo message="Creating Zip File"/>
 		<zip destfile="${package.dir}/${app.name}.zip" basedir="${build.dir}"/>
 	</target>
-	
-
 	
 </project>	

@@ -1,0 +1,76 @@
+thead th { cursor:pointer; }
+
+body{
+	font-family: "Adobe Clean", "Myriad Pro", Calibri, Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	background-color: #2A587A;
+	background-image: url(grad.jpg);
+	background-repeat: repeat-x;
+	padding: 5px;
+	
+}
+h1{
+	font-size: 17px;
+}
+
+h2{
+	font-size: 16px;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+em{ font-style:italic;}
+strong{font-weight:bold;};
+
+table{
+	width: 100%;
+}
+
+th{
+	text-align: left;
+	font-weight: bold;
+	background-color: #142a3a;
+	padding: 2px;
+	color: #DDDDDD;
+}
+
+td{
+	padding: 1px 2px;
+}
+tr{
+	background-color:#FFFFFF;
+}
+
+td{
+	margin: 0;
+}
+
+tr.odd{
+	background-color: #DEDEDE;
+}
+
+tr.header{
+	background-color: transparent;
+}
+
+.lines{
+	text-align: right;
+	width: 100px;	
+}
+.files{
+	width: 120px;	
+}
+
+.type{
+	width: 180px;
+	
+}
+
+.folder{
+	width: 180px;
+	
+}
+
+.file{
+	width: 305px;
+	
+}

@@ -207,9 +207,6 @@ $("#folderData").tablesorter({
 	<cfelse>
 		<p>The folder <em>#rootFilePath#</em> contains <strong>#NumberFormat(totalLines.lines)#</strong> lines of code in <strong>#NumberFormat(fileStats.recordCount)#</strong> files.	
 	</cfif>
-	
-	
-	
 
 	<h2>By Extension</h2>	
 	<table cellpadding="0" cellspacing="0" id="extData">
@@ -264,11 +261,9 @@ $("#folderData").tablesorter({
 			if(Len(Trim(line)) > 0){ 
 				i++;
 			}
-		
 		} 
 		
 		FileClose(file); 
-	
 		return i;
 	}
 	

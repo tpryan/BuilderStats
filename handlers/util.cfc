@@ -38,5 +38,16 @@ component{
 		return result;
 	}
 
+	/**
+     * @hint = Determines if a passed in path is a file or a directory.
+     */
+	public boolean function isOnlyAFile(required string rootPath){
+		if (not DirectoryExists(arguments.rootPath) and fileExists(arguments.rootPath)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 
 }

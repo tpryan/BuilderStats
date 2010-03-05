@@ -7,7 +7,6 @@ component{
 		variables.extList = "cfm,cfc,css,xml,htm,html,js";
 		variables.extList = listQualify(variables.extList, "'");
 		variables.onlyAFile = arguments.onlyAFile;
-		
 		variables.baseStats = getBaseStats();
 			
     	return This;
@@ -33,7 +32,7 @@ component{
 	
 		var SQL = "SELECT count(file) as numberOfFiles, sum(cast(lines as integer)) as lines, extension FROM resultset GROUP BY extension";
 		var qoq = new Query();
-	    qoq.setAttributes(resultSet = fileStats); 
+	    qoq.setAttributes(resultSet = variables.baseStats); 
 	  	qoq.SetDBType("query");
 	    var linesByextension = qoq.execute(sql=SQL).getResult();
 	
@@ -44,7 +43,7 @@ component{
 	
 		var SQL = "SELECT count(file) as numberOfFiles, sum(cast(lines as integer)) as lines, relativeParent FROM resultset GROUP BY relativeParent";
 		var qoq = new Query();
-	    qoq.setAttributes(resultSet = fileStats); 
+	    qoq.setAttributes(resultSet = variables.baseStats); 
 	  	qoq.SetDBType("query");
 	    var linesByFolder = qoq.execute(sql=SQL).getResult();
 	
@@ -54,7 +53,14 @@ component{
 	
 	private query function getBaseStats(){
 	
-		var files = DirectoryList(variables.rootPath, true, "Query");
+		if (variables.onlyAFile){
+			var files = DirectoryList(GetDirectoryFromPath(variables.rootPath), true, "Query");
+		}
+		else{
+			var files = DirectoryList(variables.rootPath, true, "Query");
+		}
+		
+		
 		var fileStats = QueryNew("file,extension,lines,relativeParent,relativeFile");
 		var i = 0;
 		var qoq = new Query();
@@ -92,12 +98,10 @@ component{
 	  	qoq.SetDBType("query");
 	    fileStats = qoq.execute(sql=SQL).getResult();
 		
-		
 		//Count all of the lines of code
 		for(j=1; j <= fileStats.recordCount; j++){
 			QuerySetCell(fileStats, "lines", util.countLines(fileStats.file[j]), j);
 		}
-	
 	
 		return fileStats;
 	}

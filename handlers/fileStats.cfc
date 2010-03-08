@@ -92,7 +92,7 @@ component{
 		}
 		
 		//filter out extensions that we don't want.
-		SQL = "SELECT * FROM resultset WHERE extension in(#extList#)";
+		SQL = "SELECT * FROM resultset WHERE extension in(#extList#) AND file not like '%/.%'";
 		qoq = new Query();
 	    qoq.setAttributes(resultSet = fileStats); 
 	  	qoq.SetDBType("query");

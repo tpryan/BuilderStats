@@ -6,7 +6,7 @@
 	
 	BaseURL = "http://" & cgi.server_name & ":" & cgi.server_port;
 	wsdl = BaseURL & getDirectoryFromPath(cgi.script_name) & "/wsdl.cfm";
-	handlerPath = getDirectoryFromPath(cgi.script_name) & "/flash/BuilderStatsFlex.swf";
+	handlerPath = getDirectoryFromPath(cgi.script_name) & "/flash/BuilderStatsFlex.swf###CreateUUID()#";
 	handlerOptions = "?filepath=#rootFilePath#&amp;wsdl=#wsdl#";
 	handlerURL = BaseURL & handlerPath & handlerOptions;
 	writeLog(handlerURL);

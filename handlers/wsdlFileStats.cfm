@@ -2,7 +2,7 @@
 <cfsilent>
 	<cfscript>
 	BaseURL = "http://" & cgi.server_name & ":" & cgi.server_port;
-	componentPath = BaseURL & getDirectoryFromPath(cgi.script_name) & "/fileStatsService.cfc";
+	componentPath = BaseURL & getDirectoryFromPath(cgi.script_name) & "fileStatsService.cfc";
 	</cfscript>;
 </cfsilent><?xml version="1.0" encoding="UTF-8"?>
 <wsdl:definitions targetNamespace="http://handlers.BuilderStats" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://handlers.BuilderStats" xmlns:intf="http://handlers.BuilderStats" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://rpc.xml.coldfusion" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">

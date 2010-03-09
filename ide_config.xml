@@ -10,14 +10,16 @@
     <menucontributions >
 		<contribution target="projectview" >
 			<menu name="Builder Stats">
-				<action name="Gather Statistics" handlerid="gatherStats" />
+				<action name="Gather CFC Statistics" handlerid="gatherCFCStats" />
+				<action name="Gather File Statistics" handlerid="gatherFileStats" />
 			</menu>
 	</contribution>
     </menucontributions>	
 
 	<!-- Define Handlers-->
 	<handlers>		
-		<handler id="gatherStats" type="CFM" filename="gatherStats.cfm" />
+		<handler id="gatherFileStats" type="CFM" filename="gatherFileStats.cfm" />
+		<handler id="gatherCFCStats" type="CFM" filename="gatherCFCStats.cfm" />
 	</handlers>
 
 </application>

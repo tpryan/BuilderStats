@@ -35,7 +35,13 @@ component
 			QuerySetCell(results, "hintedudfCount", cfcInfo['udfCount'] - cfcInfo['unhintedudfCount']);
 			
 		}
-			
+		
+		var SQL = "SELECT * FROM resultset WHERE file not like '%test%'";
+		var qoq = new Query();
+	    qoq.setAttributes(resultSet = results); 
+	  	qoq.SetDBType("query");
+	    var results = qoq.execute(sql=SQL).getResult();
+		
 		return results;
 	}
 	
@@ -80,7 +86,14 @@ component
 		var i = 0;
 		var j = 0;
 		
-		var allfunctions = cfcInfo.functions;
+		
+		
+		if(structKeyExists(cfcInfo, "functions")){
+			var allfunctions = cfcInfo.functions;
+		}
+		else{
+			var allfunctions = [];
+		}
 		
 		if(structKeyExists(cfcInfo, "properties")){
 			var properties = cfcInfo.properties;

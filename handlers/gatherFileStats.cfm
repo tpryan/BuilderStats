@@ -5,9 +5,9 @@
 	rootFilePath = XMLDoc.event.ide.projectview.resource.XMLAttributes.path;
 	
 	BaseURL = "http://" & cgi.server_name & ":" & cgi.server_port;
-	wsdl = BaseURL & getDirectoryFromPath(cgi.script_name) & "/wsdlFileStats.cfm";
+	cfc = BaseURL & getDirectoryFromPath(cgi.script_name) & "/fileStats.cfc";
 	handlerPath = getDirectoryFromPath(cgi.script_name) & "/flash/BuilderStatsFlex.swf###CreateUUID()#";
-	handlerOptions = "?filepath=#rootFilePath#&amp;wsdl=#wsdl#";
+	handlerOptions = "?filepath=#rootFilePath#&amp;cfc=#cfc#";
 	handlerURL = BaseURL & handlerPath & handlerOptions;
 	writeLog(handlerURL);
 </cfscript>	

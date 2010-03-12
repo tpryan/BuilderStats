@@ -6,7 +6,7 @@
 	
 	BaseURL = "http://" & cgi.server_name & ":" & cgi.server_port;
 	cfc = BaseURL & getDirectoryFromPath(cgi.script_name) & "/fileStatsService.cfc";
-	handlerPath = getDirectoryFromPath(cgi.script_name) & "/flash/BuilderStatsFlex.swf###CreateUUID()#";
+	handlerPath = getDirectoryFromPath(cgi.script_name) & "/flash/BuilderStatsFlex.swf";
 	handlerOptions = "?rootpath=#rootFilePath#&amp;cfc=#cfc#";
 	handlerURL = BaseURL & handlerPath & handlerOptions;
 	writeLog(handlerURL);
